@@ -50,7 +50,6 @@ func CheckInfo(email string, isGV bool) string{
 				}
 			if (email == userGV.EMAIL) {
 				name = userGV.HOTEN
-				return name
 			}
 		}
 	} else {
@@ -66,10 +65,8 @@ func CheckInfo(email string, isGV bool) string{
 				}
 			if (email == userSV.EMAIL) {
 				name = userSV.HOTEN
-				return name
 			}
                 }
 	}
-
-	return "Error: ?"
+	return name
 }
