@@ -7,6 +7,7 @@ import (
 
 	_ "QuanLySinhVien/models"
 	"QuanLySinhVien/feature"
+	"QuanLySinhVien/utils"
 )
 
 var (
@@ -50,8 +51,11 @@ func CheckLogin(check bool) bool {
 }
 
 func main() {
+	// Banner ASCII
+	utils.Banner()
+
 	if (!CheckLogin(true)) { os.Exit(0) }
 	text := ""
 	if isGV { text = "giảng viên" } else { text = "sinh viên" }
-	fmt.Println("Chào", text, feature.CheckInfo(Email, isGV), "Đã đăng nhập !!!")
+	utils.Echo("Chào " + text + " " + feature.CheckInfo(Email, isGV) + " Đã đăng nhập !!!", true)
 }
