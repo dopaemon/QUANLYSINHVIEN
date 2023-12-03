@@ -9,16 +9,22 @@ import (
 	"QuanLySinhVien/feature"
 )
 
+var (
+	LoginActive	bool
+	isGV	bool
+)
+
 func CheckLogin(check bool) bool {
 	fmt.Print("Bạn có tài khoản chưa ?\n[y/N]: ")
 
-	input := "N"
+	input := "Biến Input"
 
 	for ; ; {
 		fmt.Scan(&input)
 
 		if (input == "y" || input == "Y") {
-			if (!feature.Login()) {
+			LoginActive, isGV = feature.Login()
+			if (!LoginActive) {
 				fmt.Println("Đăng nhập thất bại, bạn muốn thử lại ?")
 				fmt.Print("[y/N]: ")
 				fmt.Scan(&input)
@@ -27,6 +33,9 @@ func CheckLogin(check bool) bool {
 				} else {
 					return false
 				}
+			} else {
+				fmt.Println("Đăng nhập thành công !!!")
+				return true
 			}
 		} else if (input == "n" || input == "N") {
 			fmt.Println("Liên lạc giảng viên để thêm tài khoản !!!")
@@ -35,6 +44,8 @@ func CheckLogin(check bool) bool {
 			fmt.Println("Chọn [y/N]: ")
 		}
 	}
+
+	return false
 }
 
 func main() {

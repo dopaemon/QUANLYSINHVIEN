@@ -6,5 +6,8 @@ import (
 var (
 )
 
-func TaiKhoan() {
+type TaiKhoan struct {
+	EMAIL	string
+	PASSWD	string
+	GV	bool
 }
