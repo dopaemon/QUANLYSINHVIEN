@@ -11,7 +11,7 @@ var (
 )
 
            // Login, Là giảng viên
-func Login() (bool, bool) {
+func Login() (bool, bool, string) {
 	email := "default@dlu.edu.vn"
 	passwd := "default"
 
@@ -24,7 +24,7 @@ func Login() (bool, bool) {
 	file, err := os.Open("./database/TAIKHOAN.csv")
 	if (err != nil) {
 		fmt.Println("Lỗi khi mở tệp")
-		return false, false
+		return false, false, ""
 	}
 
 	// Tự close file sau khi sử dụng xong :)
@@ -34,7 +34,7 @@ func Login() (bool, bool) {
 	records, err := reader.ReadAll()
 	if (err != nil) {
 		fmt.Println("Lỗi khi đọc file csv")
-		return false, false
+		return false, false, ""
 	}
 
 	for _, record := range records {
@@ -44,12 +44,12 @@ func Login() (bool, bool) {
 
 		if (emailcsv == email && passwdcsv == passwd) {
 			if (gv) {
-				return true, true
+				return true, true, email
 			} else {
-				return true, false
+				return true, false, email
 			}
 		}
 	}
 
-	return false, false
+	return false, false, ""
 }

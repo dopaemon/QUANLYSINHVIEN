@@ -4,7 +4,7 @@ import (
 )
 
 type GiangVien struct {
-	MSGV	int
+	MSGV	string
 	HOTEN	string
 	NGAYSINH	string
 	KHOA	string

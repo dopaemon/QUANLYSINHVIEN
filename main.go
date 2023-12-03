@@ -12,10 +12,11 @@ import (
 var (
 	LoginActive	bool
 	isGV	bool
+	Email	string
 )
 
 func CheckLogin(check bool) bool {
-	fmt.Print("Bạn có tài khoản chưa ?\n[y/N]: ")
+	fmt.Print("Bạn có tài khoản chưa ? | [y/N]: ")
 
 	input := "Biến Input"
 
@@ -23,10 +24,10 @@ func CheckLogin(check bool) bool {
 		fmt.Scan(&input)
 
 		if (input == "y" || input == "Y") {
-			LoginActive, isGV = feature.Login()
+			LoginActive, isGV, Email = feature.Login()
 			if (!LoginActive) {
-				fmt.Println("Đăng nhập thất bại, bạn muốn thử lại ?")
-				fmt.Print("[y/N]: ")
+				fmt.Print("Đăng nhập thất bại, bạn muốn thử lại ?")
+				fmt.Print(" | [y/N]: ")
 				fmt.Scan(&input)
 				if (input == "y" || input == "Y") {
 					return CheckLogin(true)
@@ -50,4 +51,7 @@ func CheckLogin(check bool) bool {
 
 func main() {
 	if (!CheckLogin(true)) { os.Exit(0) }
+	text := ""
+	if isGV { text = "giảng viên" } else { text = "sinh viên" }
+	fmt.Println("Chào", text, feature.CheckInfo(Email, isGV), "Đã đăng nhập !!!")
 }
