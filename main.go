@@ -58,4 +58,6 @@ func main() {
 	text := ""
 	if isGV { text = "giảng viên" } else { text = "sinh viên" }
 	utils.Echo("Chào " + text + " " + feature.CheckInfo(Email, isGV) + " Đã đăng nhập !!!", true)
+
+	utils.Menu(isGV, text, feature.CheckInfo(Email, isGV))
 }
