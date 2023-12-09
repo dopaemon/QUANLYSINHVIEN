@@ -4,6 +4,7 @@ import (
 	_ "encoding/csv"
 	"fmt"
 	"os"
+	"flag"
 
 	_ "QuanLySinhVien/models"
 	"QuanLySinhVien/feature"
@@ -50,6 +51,11 @@ func CheckLogin(check bool) bool {
 	return false
 }
 
+func Flags() {
+	flag.IntVar(&one, "one", 1, "Trả về 1")
+	flag.Parse()
+}
+
 func main() {
 	// Banner ASCII
 	utils.Banner()
@@ -58,6 +64,16 @@ func main() {
 	text := ""
 	if isGV { text = "giảng viên" } else { text = "sinh viên" }
 	utils.Echo("Chào " + text + " " + feature.CheckInfo(Email, isGV) + " Đã đăng nhập !!!", true)
+	input := "?"
+	fmt.Print("Bạn có muốn tiếp tục ? [y/N]: ")
+	fmt.Scan(&input)
+
+	if input == "y" || input == "Y" {
+		fmt.Print()
+	} else {
+		utils.Echo("Tạm biệt " + text + " " + feature.CheckInfo(Email, isGV) + " !!!", true)
+		os.Exit(0)
+	}
 
 	utils.Menu(isGV, text, feature.CheckInfo(Email, isGV))
 }
